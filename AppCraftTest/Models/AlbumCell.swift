@@ -9,26 +9,41 @@ import UIKit
 
 class AlbumCell: UITableViewCell {
     
-    static let identifier = "albumCell"
+    // Properties
     
+    static let identifier = "albumCell"
     let albumTitleLabel = UILabel()
+    
+    
+    // Initialization
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(albumTitleLabel)
         
         setupTitleLabel()
-        setTitleLabelConstraints()
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+
+    // Methods
+    func set(with album:Album){
+        
+        albumTitleLabel.text = album.title
+        
+    }
+    
+    
+    // UI Setup
     
     private func setupTitleLabel(){
         
-        albumTitleLabel.adjustsFontSizeToFitWidth = true
+        addSubview(albumTitleLabel)
+        albumTitleLabel.numberOfLines = 0
+        setTitleLabelConstraints()
     }
     
     private func setTitleLabelConstraints(){
@@ -36,9 +51,10 @@ class AlbumCell: UITableViewCell {
         
         albumTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        albumTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        albumTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16).isActive = true
-        albumTitleLabel.heightAnchor.constraint(equalToConstant: 21).isActive = true
-        albumTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: 16).isActive = true
+        albumTitleLabel.topAnchor.constraint(equalTo: topAnchor,constant: 10).isActive = true
+        albumTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -10).isActive = true
+        albumTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 20).isActive = true
+        albumTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -30).isActive = true
+    
     }
 }

@@ -7,24 +7,36 @@
 
 import UIKit
 
-class AlbumListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-
+class AlbumListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {    
     
-    let tableView = UITableView()
-    var albums = [Int]()
+    
+    // Properties
+    
+    private let tableView = UITableView()
+    private var albums:Albums = []
+    
+    
+    // Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
         
         setupTableView()
         
+        let url = "https://jsonplaceholder.typicode.com/albums"
+        AlamofireFetcherService.fetchAlbums(url:url ) { (album) in
+                self.albums = album
+                self.tableView.reloadData()
+            
+        }
+        
     }
     
-    //MARK: - Setup Table View
+    //MARK: - UI Setup
     
-    func setupTableView(){
+    //Setup Table View
+    
+    private func setupTableView(){
         
         view.addSubview(tableView)
         tableView.delegate = self
@@ -32,18 +44,19 @@ class AlbumListViewController: UIViewController,UITableViewDataSource,UITableVie
         tableView.register(AlbumCell.self, forCellReuseIdentifier: AlbumCell.identifier)
         tableView.pin(to: view)
     }
-
+    
     //MARK: - Table View Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        100
+        return albums.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: AlbumCell.identifier, for: indexPath) as! AlbumCell
         cell.accessoryType = .disclosureIndicator
-        cell.albumTitleLabel.text = String(indexPath.row)
+        let album = albums[indexPath.row]
+        cell.set(with: album)
         
         return cell
     }
@@ -53,9 +66,25 @@ class AlbumListViewController: UIViewController,UITableViewDataSource,UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        performSegue(withIdentifier: "photosSegue", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
+
+
         
     }
-
-
+    
+    //MARK: - Navigation
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard segue.identifier == "photosSegue" else { return }
+        let photosVC = segue.destination as! PhotosViewController
+        guard let selectedPath = tableView.indexPathForSelectedRow else { return }
+        let album = albums[selectedPath.row]
+        photosVC.albumId = album.id
+        photosVC.title = album.title
+    }
+    
+    
 }
