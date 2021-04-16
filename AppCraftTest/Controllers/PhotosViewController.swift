@@ -25,10 +25,18 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
         setupNavigatonbar()
         
         AlamofireFetcherService.fetchPhotos(albumId: albumId) { (photos) in
-            self.photos = photos
-            self.collectionView.reloadData()
+//            DispatchQueue.main.async {
+                self.photos = photos
+                self.collectionView.reloadData()
+//            }
         }
         saveButtonStatus()
+    }
+    
+    
+    func fetchImages(){
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,7 +78,8 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     private func setupNavigatonbar(){
         
         self.navigationItem.largeTitleDisplayMode = .always
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveAlbum))
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveAlbum))
         // Делаем навигейшн бар прозрачным
         self.navigationItem.rightBarButtonItem?.titleTextAttributes(for: .normal)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -79,15 +88,21 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     
     //MARK: - Actions
     
+    
+    // save album into local database
+    
     @objc private func saveAlbum(){
         
         guard let albumTitle = self.title else { return }
+        
         let album = SavedAlbum(title: albumTitle,id: albumId!)
         UserDefaults.standard.setValue(true, forKey: "\(album.id)")
         RealmDBManager.saveObject(album)
         saveButtonStatus()
     }
     
+    
+    // present Full Screen Image
     private func presentFullScreenImage(image:UIImage){
         
         let newImageView = UIImageView(image: image)
@@ -110,6 +125,8 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
         self.tabBarController?.tabBar.isHidden = false
         sender.view?.removeFromSuperview()
     }
+    
+    // Save button enabled / disable depending on album saved or not
     
     func saveButtonStatus(){
         

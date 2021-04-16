@@ -24,6 +24,7 @@ class SavedAlbum: Object {
         self.init()
         self.title = title
         self.id = id
+        
     }
 }
 

@@ -10,11 +10,8 @@ import Alamofire
 
 
 
-protocol DataFetcher {
-    static func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T) -> Void)
-}
 
-class AlamofireFetcherService:DataFetcher{
+class AlamofireFetcherService{
     
     
     static func fetchAlbums(urlString:String,completion:@escaping(Albums) -> Void){
