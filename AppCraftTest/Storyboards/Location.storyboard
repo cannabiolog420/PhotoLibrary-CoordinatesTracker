@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qmk-lI-n2V">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Location-->
+        <scene sceneID="sse-ok-hR8">
+            <objects>
+                <viewController id="Qmk-lI-n2V" customClass="LocationViewController" customModule="AppCraftTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Rz-gD-yHr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U5O-6j-Gfc">
+                                <rect key="frame" x="16" y="267" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4r-Ds-irF">
+                                <rect key="frame" x="16" y="341" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Отслеживать геолокацию">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="trackLocationTapped:" destination="Qmk-lI-n2V" eventType="touchUpInside" id="lQ7-An-Q7S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VHg-PX-guB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="A4r-Ds-irF" firstAttribute="top" secondItem="U5O-6j-Gfc" secondAttribute="bottom" constant="40" id="4Dy-fx-MzL"/>
+                            <constraint firstItem="VHg-PX-guB" firstAttribute="trailing" secondItem="A4r-Ds-irF" secondAttribute="trailing" constant="16" id="FSM-o1-dHZ"/>
+                            <constraint firstItem="U5O-6j-Gfc" firstAttribute="centerY" secondItem="5Rz-gD-yHr" secondAttribute="centerY" id="Fgj-AX-xam"/>
+                            <constraint firstItem="U5O-6j-Gfc" firstAttribute="leading" secondItem="VHg-PX-guB" secondAttribute="leading" constant="16" id="OHb-at-AxO"/>
+                            <constraint firstItem="VHg-PX-guB" firstAttribute="trailing" secondItem="U5O-6j-Gfc" secondAttribute="trailing" constant="16" id="OvH-1x-7qL"/>
+                            <constraint firstItem="A4r-Ds-irF" firstAttribute="leading" secondItem="VHg-PX-guB" secondAttribute="leading" constant="16" id="Yv7-CV-uAW"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Location" image="location.fill.viewfinder" catalog="system" id="f4X-nk-YLY"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="coordinatesTextField" destination="U5O-6j-Gfc" id="udV-FB-6kl"/>
+                        <outlet property="trackLocationButton" destination="A4r-Ds-irF" id="dLP-In-e1d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eI9-iB-GsG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82.5" y="-22.183098591549296"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="location.fill.viewfinder" catalog="system" width="128" height="115"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

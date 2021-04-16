@@ -12,6 +12,12 @@
 		E8966E262628FBCF00271E50 /* SavedAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E252628FBCF00271E50 /* SavedAlbumsViewController.swift */; };
 		E8966E332629033400271E50 /* SavedAlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E322629033400271E50 /* SavedAlbumModel.swift */; };
 		E8966E382629088100271E50 /* RealmDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E372629088100271E50 /* RealmDBManager.swift */; };
+		E8966E3B2629130A00271E50 /* Location.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8966E3A2629130A00271E50 /* Location.storyboard */; };
+		E8966E402629172E00271E50 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E3F2629172E00271E50 /* LocationViewController.swift */; };
+		E8966E43262917D600271E50 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E42262917D600271E50 /* LocationManager.swift */; };
+		E8966E462629181900271E50 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E452629181900271E50 /* AudioPlayer.swift */; };
+		E8966E492629183400271E50 /* Smash Mouth - All Star.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E8966E482629183400271E50 /* Smash Mouth - All Star.mp3 */; };
+		E8966E4D2629185800271E50 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E4C2629185800271E50 /* Alert.swift */; };
 		E8BF6016262655EE00B55111 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF6015262655EE00B55111 /* AppDelegate.swift */; };
 		E8BF6018262655EE00B55111 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF6017262655EE00B55111 /* SceneDelegate.swift */; };
 		E8BF601D262655EE00B55111 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8BF601B262655EE00B55111 /* Main.storyboard */; };
@@ -34,6 +40,12 @@
 		E8966E252628FBCF00271E50 /* SavedAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAlbumsViewController.swift; sourceTree = "<group>"; };
 		E8966E322629033400271E50 /* SavedAlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAlbumModel.swift; sourceTree = "<group>"; };
 		E8966E372629088100271E50 /* RealmDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDBManager.swift; sourceTree = "<group>"; };
+		E8966E3A2629130A00271E50 /* Location.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Location.storyboard; sourceTree = "<group>"; };
+		E8966E3F2629172E00271E50 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		E8966E42262917D600271E50 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E8966E452629181900271E50 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		E8966E482629183400271E50 /* Smash Mouth - All Star.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Smash Mouth - All Star.mp3"; sourceTree = "<group>"; };
+		E8966E4C2629185800271E50 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		E8BF6012262655EE00B55111 /* AppCraftTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCraftTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BF6015262655EE00B55111 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8BF6017262655EE00B55111 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +91,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E8966E3D262915A200271E50 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E8BF606D262776B100B55111 /* AlbumCell.swift */,
+				E8BF60A326287A5F00B55111 /* PhotoCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		E8BF6009262655ED00B55111 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +138,7 @@
 				E8BF604B262762F600B55111 /* AlbumListViewController.swift */,
 				E8BF609C26284A3800B55111 /* PhotosViewController.swift */,
 				E8966E252628FBCF00271E50 /* SavedAlbumsViewController.swift */,
+				E8966E3F2629172E00271E50 /* LocationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				E8BF601B262655EE00B55111 /* Main.storyboard */,
+				E8966E3A2629130A00271E50 /* Location.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -132,11 +155,10 @@
 		E8BF6058262774F900B55111 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E8BF606D262776B100B55111 /* AlbumCell.swift */,
-				E8BF60A326287A5F00B55111 /* PhotoCell.swift */,
 				E8BF60852627B9C100B55111 /* AlbumModel.swift */,
 				E8966E1B26289F1F00271E50 /* PhotoModel.swift */,
 				E8966E322629033400271E50 /* SavedAlbumModel.swift */,
+				E8966E3D262915A200271E50 /* Cells */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,6 +170,7 @@
 				E8BF6017262655EE00B55111 /* SceneDelegate.swift */,
 				E8BF601E262655EF00B55111 /* Assets.xcassets */,
 				E8BF6020262655EF00B55111 /* LaunchScreen.storyboard */,
+				E8966E482629183400271E50 /* Smash Mouth - All Star.mp3 */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -165,6 +188,9 @@
 			children = (
 				E8BF607B2627B53D00B55111 /* AlamofireFetcherService.swift */,
 				E8966E372629088100271E50 /* RealmDBManager.swift */,
+				E8966E42262917D600271E50 /* LocationManager.swift */,
+				E8966E452629181900271E50 /* AudioPlayer.swift */,
+				E8966E4C2629185800271E50 /* Alert.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -228,9 +254,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8966E492629183400271E50 /* Smash Mouth - All Star.mp3 in Resources */,
 				E8BF6022262655EF00B55111 /* LaunchScreen.storyboard in Resources */,
 				E8BF601F262655EF00B55111 /* Assets.xcassets in Resources */,
 				E8BF601D262655EE00B55111 /* Main.storyboard in Resources */,
+				E8966E3B2629130A00271E50 /* Location.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,13 +313,17 @@
 			files = (
 				E8966E1C26289F1F00271E50 /* PhotoModel.swift in Sources */,
 				E8966E332629033400271E50 /* SavedAlbumModel.swift in Sources */,
+				E8966E43262917D600271E50 /* LocationManager.swift in Sources */,
+				E8966E4D2629185800271E50 /* Alert.swift in Sources */,
 				E8BF6016262655EE00B55111 /* AppDelegate.swift in Sources */,
 				E8BF604C262762F600B55111 /* AlbumListViewController.swift in Sources */,
 				E8BF6018262655EE00B55111 /* SceneDelegate.swift in Sources */,
 				E8BF607C2627B53D00B55111 /* AlamofireFetcherService.swift in Sources */,
 				E8966E382629088100271E50 /* RealmDBManager.swift in Sources */,
+				E8966E402629172E00271E50 /* LocationViewController.swift in Sources */,
 				E8966E262628FBCF00271E50 /* SavedAlbumsViewController.swift in Sources */,
 				E8BF606E262776B100B55111 /* AlbumCell.swift in Sources */,
+				E8966E462629181900271E50 /* AudioPlayer.swift in Sources */,
 				E8BF60862627B9C100B55111 /* AlbumModel.swift in Sources */,
 				E8BF6073262778E100B55111 /* UIView + extension.swift in Sources */,
 				E8BF60A426287A5F00B55111 /* PhotoCell.swift in Sources */,
