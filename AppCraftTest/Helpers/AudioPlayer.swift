@@ -9,17 +9,17 @@ import Foundation
 import AVFoundation
 
 
-
-
 class AudioPlayer{
     
-    
+    // Properties
     var player:AVAudioPlayer!
+    let soundTrackName = "Smash Mouth - All Star.mp3"
     
+    // Setup
     
     func setupPlayer(){
         
-        guard let soundURL = Bundle.main.url(forResource: "Smash Mouth - All Star", withExtension: "mp3") else { return }
+        guard let soundURL = Bundle.main.url(forResource: soundTrackName, withExtension: nil) else { return }
         
         do {
             
@@ -36,6 +36,8 @@ class AudioPlayer{
         }
         
     }
+    
+    // Methods
     
     func playPausePlayer(){
         

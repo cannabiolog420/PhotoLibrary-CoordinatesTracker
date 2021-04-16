@@ -8,6 +8,7 @@
 import CoreLocation
 import UIKit
 
+// делегат для обновления интерфейса контроллера
 
 protocol LocationManagerDelegate{
     func trackingLocation(coordinatesString:String)
@@ -73,7 +74,6 @@ class LocationManager:NSObject,CLLocationManagerDelegate{
             break
         case .notDetermined:
             trackAfterAllowing = true
-            print(trackAfterAllowing)
             locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
@@ -100,27 +100,7 @@ class LocationManager:NSObject,CLLocationManagerDelegate{
         locationManagerDelegate.buttonAndTextFieldForState(isTracking: isLocationTracking)
     }
     
-    // Вызов алёрт контроллера при попытке начать отслеживать геолокацию с выключенной службой геолокации / выключенным определением местоположения
     
-    private func showAlertController(title:String,message:String){
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Понятно", style: .default)
-        if CLLocationManager.locationServicesEnabled(){
-            let settingsAction = UIAlertAction(title: "Настройки", style: .default) { _ in
-                guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
-                if UIApplication.shared.canOpenURL(settingsURL){
-                    UIApplication.shared.open(settingsURL)
-                }
-            }
-            alertController.addAction(settingsAction)
-        }
-        alertController.addAction(cancelAction)
-        
-        guard let topViewController = UIApplication.shared.windows.first?.rootViewController else { return }
-        topViewController.present(alertController, animated: true)
-        
-    }
     //MARK: - Location Manager Delegate
     
     
