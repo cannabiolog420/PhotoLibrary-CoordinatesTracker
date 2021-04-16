@@ -28,6 +28,7 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
             self.photos = photos
             self.collectionView.reloadData()
         }
+        saveButtonStatus()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,15 +79,16 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     
     //MARK: - Actions
     
-    @objc func saveAlbum(){
+    @objc private func saveAlbum(){
         
         guard let albumTitle = self.title else { return }
-        let album = SavedAlbum(title: albumTitle)
-        
+        let album = SavedAlbum(title: albumTitle,id: albumId!)
+        UserDefaults.standard.setValue(true, forKey: "\(album.id)")
         RealmDBManager.saveObject(album)
+        saveButtonStatus()
     }
     
-    func presentFullScreenImage(image:UIImage){
+    private func presentFullScreenImage(image:UIImage){
         
         let newImageView = UIImageView(image: image)
         newImageView.frame = UIScreen.main.bounds
@@ -103,12 +105,20 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     
     
     
-    @objc func dismissFullScreenImage(_ sender: UITapGestureRecognizer) {
+    @objc private func dismissFullScreenImage(_ sender: UITapGestureRecognizer) {
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
         sender.view?.removeFromSuperview()
     }
     
+    func saveButtonStatus(){
+        
+        if UserDefaults.standard.bool(forKey: "\(albumId!)"){
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            navigationItem.rightBarButtonItem?.title = "Saved"
+        }
+        
+    }
     
     //MARK: - Collection View Data Source
     

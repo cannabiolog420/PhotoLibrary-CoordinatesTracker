@@ -14,8 +14,9 @@ class AlbumListViewController: UIViewController,UITableViewDataSource,UITableVie
     
     private let tableView = UITableView()
     private var albums:Albums = []
-    
-    
+    let segueIdentifier = "photosSegue"
+    let urlString = "https://jsonplaceholder.typicode.com/albums"
+
     // Lifecycle Methods
     
     override func viewDidLoad() {
@@ -23,13 +24,13 @@ class AlbumListViewController: UIViewController,UITableViewDataSource,UITableVie
         
         setupTableView()
         
-        let urlString = "https://jsonplaceholder.typicode.com/albums"
         AlamofireFetcherService.fetchAlbums(urlString:urlString ) { (album) in
                 self.albums = album
                 self.tableView.reloadData()
             
         }
         
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +72,7 @@ class AlbumListViewController: UIViewController,UITableViewDataSource,UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "photosSegue", sender: self)
+        performSegue(withIdentifier: segueIdentifier, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
 
 
@@ -83,7 +84,7 @@ class AlbumListViewController: UIViewController,UITableViewDataSource,UITableVie
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard segue.identifier == "photosSegue" else { return }
+        guard segue.identifier == segueIdentifier else { return }
         let photosVC = segue.destination as! PhotosViewController
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
         let album = albums[selectedPath.row]

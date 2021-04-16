@@ -53,7 +53,6 @@ class SavedAlbumsViewController: UIViewController,UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: AlbumCell.identifier, for: indexPath) as! AlbumCell
-//        cell.accessoryType = .disclosureIndicator
         let album = savedAlbums[indexPath.row]
         cell.set(with: album)
         
@@ -65,7 +64,6 @@ class SavedAlbumsViewController: UIViewController,UITableViewDataSource,UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        performSegue(withIdentifier: "photosSegue", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
 
     }
@@ -75,24 +73,16 @@ class SavedAlbumsViewController: UIViewController,UITableViewDataSource,UITableV
         if editingStyle == .delete{
         
             let album = savedAlbums[indexPath.row]
+            UserDefaults.standard.setValue(false, forKey: "\(album.id)")
         RealmDBManager.deleteObject(album)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            
         }
         
     }
     
     //MARK: - Navigation
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard segue.identifier == "photosSegue" else { return }
-        let photosVC = segue.destination as! PhotosViewController
-        guard let selectedPath = tableView.indexPathForSelectedRow else { return }
-        let album = savedAlbums[selectedPath.row]
-//        photosVC.albumId = album.id
-        photosVC.title = album.title
-    }
     
     
 }
