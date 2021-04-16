@@ -41,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmG-b8-v6L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="852"/>
+            <point key="canvasLocation" x="1998.5507246376812" y="851.78571428571422"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cKV-xQ-P0L">
@@ -55,6 +55,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="edC-0l-UCe" kind="relationship" relationship="viewControllers" id="xlX-Lo-fcc"/>
+                        <segue destination="9Iv-YG-PBg" kind="relationship" relationship="viewControllers" id="WKS-cB-DsC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FcD-zo-xrf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -80,9 +81,45 @@
             </objects>
             <point key="canvasLocation" x="-617" y="440"/>
         </scene>
+        <!--Saved-->
+        <scene sceneID="uya-mo-aLV">
+            <objects>
+                <viewController id="h8f-0A-TIZ" customClass="SavedAlbumsViewController" customModule="AppCraftTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vvZ-bc-BPN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="pXG-Mr-DvC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Saved" id="DlY-41-gbc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YMu-pw-zza" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="291.304347826087" y="1120.9821428571429"/>
+        </scene>
+        <!--Saved-->
+        <scene sceneID="lxY-ss-krm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Iv-YG-PBg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Saved" image="square.and.arrow.down.on.square.fill" catalog="system" id="dRs-Oz-A9O"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ogT-IL-lSp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="h8f-0A-TIZ" kind="relationship" relationship="rootViewController" id="kNA-QR-B7a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Pt-ut-z4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-618.84057971014499" y="1120.9821428571429"/>
+        </scene>
     </scenes>
     <resources>
         <image name="rectangle.stack.fill" catalog="system" width="128" height="122"/>
+        <image name="square.and.arrow.down.on.square.fill" catalog="system" width="122" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

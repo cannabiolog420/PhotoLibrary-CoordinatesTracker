@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+
+
 class AlbumCell: UITableViewCell {
     
     // Properties
@@ -36,13 +39,19 @@ class AlbumCell: UITableViewCell {
         
     }
     
+    func set(with savedAlbum:SavedAlbum){
+        
+        albumTitleLabel.text = savedAlbum.title
+        
+    }
+    
+    
     
     // UI Setup
     
     private func setupTitleLabel(){
         
         addSubview(albumTitleLabel)
-        albumTitleLabel.numberOfLines = 0
         setTitleLabelConstraints()
     }
     
@@ -51,8 +60,8 @@ class AlbumCell: UITableViewCell {
         
         albumTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        albumTitleLabel.topAnchor.constraint(equalTo: topAnchor,constant: 10).isActive = true
-        albumTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -10).isActive = true
+
+        albumTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         albumTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 20).isActive = true
         albumTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -30).isActive = true
     

@@ -24,10 +24,7 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
         setupCollectionView()
         setupNavigatonbar()
         
-        AlamofireFetcherService.fetchPhotos(albumId: albumId) { (photos) in
-                self.photos = photos
-                self.collectionView.reloadData()
-        }
+        fetchPhotos()
         
     }
     
@@ -79,8 +76,22 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     
     //MARK: - Methods
     
+    func fetchPhotos(){
+        
+        
+        AlamofireFetcherService.fetchPhotos(albumId: albumId) { (photos) in
+                self.photos = photos
+                self.collectionView.reloadData()
+        }
+    }
+    
+    
     @objc func saveAlbum(){
         
+        guard let albumTitle = self.title else { return }
+        let album = SavedAlbum(title: albumTitle)
+        
+        RealmDBManager.saveObject(album)
     }
     
     
