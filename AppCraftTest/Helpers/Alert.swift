@@ -48,7 +48,7 @@ struct Alert{
     }
     
     
-    private static func showBasicAlert(title:String,message:String,defaultActionTitle:String,actions:[UIAlertAction]){
+    static func showBasicAlert(title:String,message:String,defaultActionTitle:String,actions:[UIAlertAction]){
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: defaultActionTitle, style: .default)
@@ -60,7 +60,6 @@ struct Alert{
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             rootViewController.present(alertController, animated: true)
         }
-        
     }
     
 }

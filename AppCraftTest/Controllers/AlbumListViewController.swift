@@ -23,13 +23,18 @@ class AlbumListViewController: UIViewController,UITableViewDataSource,UITableVie
         
         setupTableView()
         
-        let url = "https://jsonplaceholder.typicode.com/albums"
-        AlamofireFetcherService.fetchAlbums(url:url ) { (album) in
+        let urlString = "https://jsonplaceholder.typicode.com/albums"
+        AlamofireFetcherService.fetchAlbums(urlString:urlString ) { (album) in
                 self.albums = album
                 self.tableView.reloadData()
             
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     //MARK: - UI Setup

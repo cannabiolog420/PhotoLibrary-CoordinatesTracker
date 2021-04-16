@@ -10,11 +10,12 @@ import UIKit
 class LocationViewController: UIViewController {
 
     // Properties
-    lazy var locationManager:LocationManager = {
-        let locationManager = LocationManager()
-        locationManager.locationManagerDelegate = self
-        return locationManager
-    }()
+//    lazy var locationManager:LocationManager = {
+//        let locationManager = LocationManager()
+//        locationManager.locationManagerDelegate = self
+//        return locationManager
+//    }()
+    var locationManager:LocationManager!
     
     @IBOutlet weak var coordinatesTextField: UITextField!
     @IBOutlet weak var trackLocationButton: UIButton!
@@ -23,8 +24,20 @@ class LocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+                
+        coordinatesTextField.isUserInteractionEnabled = false
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationManager = LocationManager()
+        locationManager.locationManagerDelegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        locationManager.stopLocationTracking()
     }
     
 
@@ -42,7 +55,7 @@ class LocationViewController: UIViewController {
 
 
 extension LocationViewController:LocationManagerDelegate{
-    
+
     
     func buttonAndTextFieldForState(isTracking: Bool) {
         
@@ -62,4 +75,13 @@ extension LocationViewController:LocationManagerDelegate{
         
         coordinatesTextField.text = coordinatesString
     }
+    
+    
+    func locationTrackingDisabled() {
+      
+        trackLocationButton.setTitle("Что то не так", for: .normal)
+        trackLocationButton.backgroundColor = .gray
+    }
+    
+    
 }

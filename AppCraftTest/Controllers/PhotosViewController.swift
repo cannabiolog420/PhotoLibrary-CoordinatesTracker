@@ -20,17 +20,19 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupCollectionView()
         setupNavigatonbar()
         
-        fetchPhotos()
-        
+        AlamofireFetcherService.fetchPhotos(albumId: albumId) { (photos) in
+            self.photos = photos
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         // Возвращаем навигейшн бар в исходное значение
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
@@ -74,17 +76,7 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    //MARK: - Methods
-    
-    func fetchPhotos(){
-        
-        
-        AlamofireFetcherService.fetchPhotos(albumId: albumId) { (photos) in
-                self.photos = photos
-                self.collectionView.reloadData()
-        }
-    }
-    
+    //MARK: - Actions
     
     @objc func saveAlbum(){
         
@@ -94,10 +86,33 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
         RealmDBManager.saveObject(album)
     }
     
+    func presentFullScreenImage(image:UIImage){
+        
+        let newImageView = UIImageView(image: image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullScreenImage(_:)))
+        newImageView.addGestureRecognizer(tap)
+        newImageView.enableZoom()
+        self.view.addSubview(newImageView)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    
+    
+    @objc func dismissFullScreenImage(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
+    
     
     //MARK: - Collection View Data Source
     
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
@@ -105,20 +120,27 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
-
+        
         let photo = photos[indexPath.row]
         cell.set(with: photo)
         
         return cell
     }
-
-
+    
+    
     //MARK: - Collection View Delegate
-
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         collectionView.deselectItem(at: indexPath, animated: true)
-        print("didselect")
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
+        let indexPath = collectionView.indexPath(for: cell)
+        let photoURL = photos[indexPath!.item].url
+        AlamofireFetcherService.fetchImage(from: photoURL) { (image) in
+            self.presentFullScreenImage(image: image)
+        }
     }
+    
 }

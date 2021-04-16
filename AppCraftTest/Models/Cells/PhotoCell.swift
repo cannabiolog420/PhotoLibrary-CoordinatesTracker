@@ -46,6 +46,7 @@ class PhotoCell: UICollectionViewCell {
         
         addSubview(photoImageView)
         photoImageView.contentMode = .scaleAspectFit
+        photoImageView.isUserInteractionEnabled = true
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         photoImageView.pin(to: contentView)

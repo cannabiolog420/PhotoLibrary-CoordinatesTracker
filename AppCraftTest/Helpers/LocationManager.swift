@@ -12,6 +12,7 @@ import UIKit
 protocol LocationManagerDelegate{
     func trackingLocation(coordinatesString:String)
     func buttonAndTextFieldForState(isTracking:Bool)
+    func locationTrackingDisabled()
 }
 
 
@@ -71,9 +72,9 @@ class LocationManager:NSObject,CLLocationManagerDelegate{
             Alert.showLocationAlert(type: .locationAuthorizationDenied)
             break
         case .notDetermined:
-            
-            locationManager.requestWhenInUseAuthorization()
             trackAfterAllowing = true
+            print(trackAfterAllowing)
+            locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
             break
@@ -132,23 +133,43 @@ class LocationManager:NSObject,CLLocationManagerDelegate{
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         
-        if manager.authorizationStatus == .authorizedWhenInUse{
+        
+        
+        switch manager.authorizationStatus {
+        
+        case .authorizedWhenInUse,.authorizedAlways:
             if trackAfterAllowing{
                 startStopTracking()
                 trackAfterAllowing = false
+            }else{
+                stopLocationTracking()
             }
-        }else{
+            break
+        case .denied:
+            guard let locationManagerDelegate = self.locationManagerDelegate else {
+                print("delegate was not set")
+                return }
+            locationManagerDelegate.locationTrackingDisabled()
             trackAfterAllowing = false
+            break
+        case .notDetermined:
+            trackAfterAllowing = false
+            break
+        case .restricted:
+            break
+        @unknown default:
+            print("New case is available")
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
-        updateLocationDidFailWithError(error:error)
+        print("LocationManager didFailWithError : \(error.localizedDescription)")
+        stopLocationTracking()
     }
     
     
-
+    
     
     private func updateLocation(location:CLLocation){
         
@@ -165,9 +186,8 @@ class LocationManager:NSObject,CLLocationManagerDelegate{
     }
     
     
-    private func updateLocationDidFailWithError(error:Error) {
+    func stopLocationTracking() {
         
-        print("LocationManager didFailWithError : \(error.localizedDescription)")
         locationManager.stopUpdatingLocation()
         isLocationTracking = false
         audioPlayer.stop()
@@ -176,8 +196,8 @@ class LocationManager:NSObject,CLLocationManagerDelegate{
             return }
         // очистка текстового поля,смена тайтла кнопки
         locationManagerDelegate.buttonAndTextFieldForState(isTracking: isLocationTracking)
+        
+        
+    }
     
-    
-}
-
 }

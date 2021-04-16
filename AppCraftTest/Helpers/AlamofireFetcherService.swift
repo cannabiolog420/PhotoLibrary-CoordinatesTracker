@@ -1,5 +1,5 @@
 //
-//  AlamofireDataFetcher.swift
+//  AlamofireFetcherService.swift
 //  AppCraftTest
 //
 //  Created by cannabiolog420 on 15.04.2021.
@@ -9,47 +9,29 @@ import Foundation
 import Alamofire
 
 
-class AlamofireFetcherService{
+
+protocol DataFetcher {
+    static func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T) -> Void)
+}
+
+class AlamofireFetcherService:DataFetcher{
     
     
-    
-    static func fetchAlbums(url:String,completion:@escaping(Albums)->()){
+    static func fetchAlbums(urlString:String,completion:@escaping(Albums) -> Void){
         
-        guard let url = URL(string: url) else { return }
-        AF.request(url).validate().responseJSON { (response) in
-            switch response.result{
-            
-            case .success:
-                let decoded = decodeJSON(type: Albums.self, from: response.data)
-                guard let albums = decoded else { return }
-                completion(albums)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        fetchGenericJSONData(urlString: urlString, completion: completion)
     }
     
     
     static func fetchPhotos(albumId:Int,completion:@escaping(Photos)->()){
         
         let urlString = "https://jsonplaceholder.typicode.com/photos?albumId=\(albumId)"
-        guard let url = URL(string: urlString) else { return }
-        AF.request(url).validate().responseJSON { (response) in
-            switch response.result{
-            
-            case .success:
-                let decoded = decodeJSON(type: Photos.self, from: response.data)
-                guard let photos = decoded else { return }
-                completion(photos)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        fetchGenericJSONData(urlString: urlString, completion: completion)
     }
     
     
     
-   static func fetchImage(from urlString:String,completion:@escaping(UIImage)->()){
+    static func fetchImage(from urlString:String,completion:@escaping(UIImage)->()){
         
         guard let url = URL(string: urlString) else { return }
         AF.request(url).validate().responseData { (response) in
@@ -61,12 +43,31 @@ class AlamofireFetcherService{
             case .failure(let error):
                 print(error)
             }
-            
-            
         }
+        
     }
     
-    private static func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
+    
+    static func fetchGenericJSONData<T: Decodable>(urlString:String,completion:@escaping (T) -> Void){
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        AF.request(url).validate().responseJSON { (response) in
+            
+            switch response.result{
+            case .success:
+                let decodedJSON = AlamofireFetcherService.decodeJSON(type: T.self, from: response.data )
+                guard let decoded = decodedJSON else { return }
+                completion(decoded)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+    
+    static func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()
         guard let data = from else { return nil }
         do {
