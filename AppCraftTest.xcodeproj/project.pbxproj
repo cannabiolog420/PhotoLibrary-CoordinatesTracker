@@ -18,7 +18,6 @@
 		E8966E462629181900271E50 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E452629181900271E50 /* AudioPlayer.swift */; };
 		E8966E492629183400271E50 /* Smash Mouth - All Star.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E8966E482629183400271E50 /* Smash Mouth - All Star.mp3 */; };
 		E8966E4D2629185800271E50 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E4C2629185800271E50 /* Alert.swift */; };
-		E8966E5C2629435700271E50 /* PhotoImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E5B2629435700271E50 /* PhotoImages.swift */; };
 		E8966E5F26295A8F00271E50 /* UIImageView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8966E5E26295A8F00271E50 /* UIImageView + extension.swift */; };
 		E8BF6016262655EE00B55111 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF6015262655EE00B55111 /* AppDelegate.swift */; };
 		E8BF6018262655EE00B55111 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF6017262655EE00B55111 /* SceneDelegate.swift */; };
@@ -48,7 +47,6 @@
 		E8966E452629181900271E50 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		E8966E482629183400271E50 /* Smash Mouth - All Star.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Smash Mouth - All Star.mp3"; sourceTree = "<group>"; };
 		E8966E4C2629185800271E50 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		E8966E5B2629435700271E50 /* PhotoImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoImages.swift; sourceTree = "<group>"; };
 		E8966E5E26295A8F00271E50 /* UIImageView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + extension.swift"; sourceTree = "<group>"; };
 		E8BF6012262655EE00B55111 /* AppCraftTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCraftTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BF6015262655EE00B55111 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 			children = (
 				E8BF60852627B9C100B55111 /* AlbumModel.swift */,
 				E8966E1B26289F1F00271E50 /* PhotoModel.swift */,
-				E8966E5B2629435700271E50 /* PhotoImages.swift */,
 				E8966E322629033400271E50 /* SavedAlbumModel.swift */,
 				E8966E3D262915A200271E50 /* Cells */,
 			);
@@ -332,7 +329,6 @@
 				E8BF606E262776B100B55111 /* AlbumCell.swift in Sources */,
 				E8966E462629181900271E50 /* AudioPlayer.swift in Sources */,
 				E8BF60862627B9C100B55111 /* AlbumModel.swift in Sources */,
-				E8966E5C2629435700271E50 /* PhotoImages.swift in Sources */,
 				E8BF6073262778E100B55111 /* UIView + extension.swift in Sources */,
 				E8BF60A426287A5F00B55111 /* PhotoCell.swift in Sources */,
 				E8BF609D26284A3800B55111 /* PhotosViewController.swift in Sources */,

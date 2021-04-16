@@ -57,10 +57,8 @@ class AlbumCell: UITableViewCell {
     
     private func setTitleLabelConstraints(){
         
-        
         albumTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-
+    
         albumTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         albumTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 20).isActive = true
         albumTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -30).isActive = true
