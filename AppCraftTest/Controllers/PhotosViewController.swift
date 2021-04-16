@@ -94,11 +94,24 @@ class PhotosViewController: UIViewController,UICollectionViewDataSource,UICollec
     @objc private func saveAlbum(){
         
         guard let albumTitle = self.title else { return }
-        
         let album = SavedAlbum(title: albumTitle,id: albumId!)
         UserDefaults.standard.setValue(true, forKey: "\(album.id)")
         RealmDBManager.saveObject(album)
         saveButtonStatus()
+        for i in photos{
+            AlamofireFetcherService.fetchImage(from: i.thumbnailUrl) { (image) in
+                if let imageData = image.pngData(){
+                    let photo = SavedAlbumPhotos(imageData: imageData)
+                    try! realm.write{
+                        album.photos.append(photo)
+                    }
+                }
+            }
+
+            
+            
+        }
+        
     }
     
     

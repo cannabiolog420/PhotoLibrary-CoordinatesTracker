@@ -15,7 +15,7 @@ class SavedAlbum: Object {
     
     @objc dynamic var title: String = ""
     @objc dynamic var id: Int = 0
-
+    let photos = List<SavedAlbumPhotos>()
     
 
     convenience init(title: String,id:Int) {
